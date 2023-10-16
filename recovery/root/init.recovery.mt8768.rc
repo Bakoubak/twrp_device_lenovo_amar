@@ -1,4 +1,5 @@
 on init
+    write /sys/class/leds/lcd-backlight/brightness 255
     setprop sys.usb.configfs 1
     setprop sys.usb.ffs.aio_compat 1
 
@@ -14,3 +15,16 @@ on post-fs
     symlink /dev/block/sdb /dev/block/mmcblk0boot1
     symlink /dev/block/mmcblk0boot0 /dev/block/platform/bootdevice/by-name/preloader_a
     symlink /dev/block/mmcblk0boot1 /dev/block/platform/bootdevice/by-name/preloader_b
+    
+service init-recovery-mt6765-sh /init.recovery.mt6765.sh
+    user root
+    group root
+    seclabel u:r:recovery:s0
+        
+on post-fs-data
+    start setup_fake_cache
+    wait_for_prop halium.datamount.done 1
+
+service setup_fake_cache /bin/sh /setup_fake_cache.sh
+    disabled
+    oneshot
