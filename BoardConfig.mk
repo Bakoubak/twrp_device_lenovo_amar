@@ -131,7 +131,7 @@ TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 # SHRP
 SHRP_DEVICE_CODE := amar
 SHRP_PATH := device/lenovo/$(SHRP_DEVICE_CODE)
-SHRP_MAINTAINER := Zillion
+SHRP_MAINTAINER := VistaSlayer
 SHRP_REC_TYPE := Normal
 SHRP_DEVICE_TYPE := A_Only
 SHRP_REC := /dev/block/platform/bootdevice/by-name/recovery
